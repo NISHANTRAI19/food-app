@@ -42,3 +42,13 @@
   display: flex;
   flex-wrap: wrap;
 }
+.Filter-btn {
+  margin: 10px 0;
+  width: fit-content;
+  padding: 2px 2px;
+  border: 1px solid black;
+}
+
+.Filter-btn:hover {
+  cursor: pointer;
+}

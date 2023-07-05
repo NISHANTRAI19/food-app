@@ -5,7 +5,7 @@ import RestaurantCard from "./RestaurantCard";
 const Body = () => {
     return (
         <div className="body">
-            <div className="Search">Search</div>
+            <div className="Filter-btn" onClick={() => { console.log("button clicked") }}>Top Rated Restaurants</div>
             <div className="restaurant-container">
 
 
