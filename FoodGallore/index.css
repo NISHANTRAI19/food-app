@@ -45,8 +45,10 @@
 .Filter-btn {
   margin: 10px 0;
   width: fit-content;
-  padding: 2px 2px;
+  padding: 2px 5px;
   border: 1px solid black;
+  border-radius: 5px;
+  background-color: #f0f0f0;
 }
 
 .Filter-btn:hover {
