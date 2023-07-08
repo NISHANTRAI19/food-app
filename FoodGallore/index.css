@@ -2,11 +2,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid black;
+  border: 1px solid;
+  border-color: #f0f0e2;
+  background-color: #f0f0e2;
+  border-radius: 5px;
 }
 
 .logo {
   width: 200px;
+  mix-blend-mode: color-burn;
 }
 
 .nav-items > ul {
@@ -19,11 +23,17 @@
   padding: 10px;
   margin: 10px;
 }
+.nav-items > ul > li:hover {
+  cursor: pointer;
+}
 
 .restaurant-card {
   margin: 10px;
-  width: 200px;
+  width: 300px;
   padding: 0 5px;
+  background-color: #f0f0e2 !important;
+  border: 1px solid;
+  border-color: transparent;
 }
 .restaurant-card:hover {
   border: 1px solid black;
@@ -33,7 +43,7 @@
   padding: 10px;
 }
 .restaurant-logo {
-  width: 190px;
+  width: 290px;
   padding: 10px 5px 0;
   object-fit: contain;
 }
@@ -43,14 +53,60 @@
   flex-wrap: wrap;
 }
 .Filter-btn {
-  margin: 10px 0;
+  margin: 10px 10px;
   width: fit-content;
   padding: 2px 5px;
-  border: 1px solid black;
+
   border-radius: 5px;
-  background-color: #f0f0f0;
+  background-color: #f0f0e2;
+  border: 1px solid;
+  border-color: transparent;
 }
 
 .Filter-btn:hover {
   cursor: pointer;
+  border: 1px solid black;
+}
+.Shimmer-btn {
+  background-color: #f0f0e2;
+  margin: 10px 0;
+  width: 150px;
+  height: 20px;
+  padding: 2px 5px;
+  border-radius: 5px;
+}
+
+.Shimmer-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Shimmer {
+  margin: 10px;
+  width: 200px;
+  padding: 0 5px;
+  height: 300px;
+  background-color: #f0f0e2;
+}
+.Filter {
+  display: flex;
+  flex-wrap: wrap;
+}
+.search-box {
+  margin: 10px;
+}
+.search-btn {
+  margin: 10px 10px 0 0;
+  width: fit-content;
+  padding: 2px 5px 0 5px;
+  height: 25px;
+  border-radius: 5px;
+  background-color: #f0f0e2;
+  border: 1px solid;
+  border-color: transparent;
+}
+
+.search-btn:hover {
+  cursor: pointer;
+  border-color: black;
 }
