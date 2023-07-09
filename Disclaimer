@@ -1,0 +1,10 @@
+Disclaimer:
+The swiggy API used is for educational/learning purpose.
+----------------------------------------------------------------------
+
+Caution:
+
+The API can change time to time 
+Disable CORS on your browser using a plugin to make api work 
+Please don't rely completly on Chat GPT to explain each line correctly as it may sometimes can give completely wrong and opposite explaination,
+I experienced this while using chat gpt to document it.
