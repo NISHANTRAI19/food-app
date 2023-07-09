@@ -33,12 +33,8 @@ const Body = () => {
 
 
 
-                    setfilteredList(restaurantList.filter((restraunt) => {
-
-                        const v = restraunt.data.name.toLowerCase().includes(search.toLowerCase());
-                        return v;
-
-                    }));
+                    setfilteredList(restaurantList.filter((restraunt) => restraunt.data.name.toLowerCase().includes(search.toLowerCase())
+                    ));
 
                 }}>
                     Search
