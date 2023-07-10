@@ -110,3 +110,7 @@
   cursor: pointer;
   border-color: black;
 }
+.res-link {
+  color: black;
+  text-decoration: none;
+}
