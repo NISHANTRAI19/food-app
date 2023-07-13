@@ -21,7 +21,7 @@ const RestrauntMenu = () => {
         return <Shimmer />
     const { name, cuisines, costForTwo } =
         resInfo?.cards[0]?.card?.card?.info;
-    const { itemCards } = resInfo?.cards[2].groupedCard.cardGroupMap.REGULAR.cards[1].card.card;
+    const { itemCards } = resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
 
 
     return (
