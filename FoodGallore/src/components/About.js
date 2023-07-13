@@ -1,18 +1,9 @@
+import React from "react";
 import UserClass from "./UserClass";
 
-const About = () => {
-
-    return (
-        <div>
-
-            <UserClass name={"Nishant Rai"} location={"Jhakri"} />
-
-        </div>
-
-
-
-    )
-
-
+class About extends React.Component {
+    render() {
+        return (<UserClass name={"Nishant"} location={"Jhakri"} />);
+    }
 }
 export default About;
