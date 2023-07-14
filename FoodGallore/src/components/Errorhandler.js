@@ -5,7 +5,7 @@ const ErrorHandler = () => {
     const err = useRouteError();
 
     return (<div className="errorhandling">
-        <h1>Error:{err.status}</h1>
+        <h1>You seem lost stranger<br />Error:{err.status}</h1>
 
         <h2>{err.statusText}</h2>
         <h2>
