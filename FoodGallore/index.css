@@ -119,3 +119,7 @@
   border-radius: 50%;
   width: 300px;
 }
+.api-error {
+  display: grid;
+  place-items: center;
+}

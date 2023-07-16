@@ -5,11 +5,7 @@ import { MENU_API } from "./constants";
 const useResMenuAPI = (resID) => {
     const [resInfo, setResInfo] = useState(null);
 
-
-
-
     useEffect(() => {
-
 
         fetchData();
 
@@ -24,6 +20,7 @@ const useResMenuAPI = (resID) => {
 
 
     }
+
     return resInfo;
 }
 
