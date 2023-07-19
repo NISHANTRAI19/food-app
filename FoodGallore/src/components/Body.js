@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 //import resList from "../utils/mockData";
+import useOnlineStatus from "../utils/useOnlineStatus";
+//import useRestraunt from "../utils/useRestraunt";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer"
 import { Link } from "react-router-dom";
@@ -8,6 +10,11 @@ const Body = () => {
     const [restaurantList, setRestaurantList] = useState([]);
     const [filteredList, setfilteredList] = useState([]);
     const [search, setSearch] = useState("");
+
+
+    const status = useOnlineStatus();
+
+
     useEffect(() => { (swiggyApi()) }, [])
 
     const swiggyApi = async () => {
@@ -18,6 +25,11 @@ const Body = () => {
         setfilteredList(json?.data?.cards[2]?.data?.data?.cards)
 
     }
+
+
+    if (status == false)
+
+        return (<h1>Looks like You are offline</h1>)
 
 
 

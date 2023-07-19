@@ -1,4 +1,4 @@
-import React from "react";
+
 import ReactDOM from "react-dom/client";
 import '../index.css'
 import Header from "./components/Header";
@@ -9,8 +9,11 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import ErrorHandler from "./components/Errorhandler";
 import RestrauntMenu from "./components/RestrauntMenu";
 
+import React, { Suspense, lazy } from "react";
+import Shimmer from "./components/Shimmer";
 
 
+const Grocery = lazy(() => import("./components/Grocery"))
 const AppLayout = () => {
     return (
         <div className="app">
@@ -39,6 +42,14 @@ const routeConfig = [{
         {
             path: "/restraunts/:resId",
             element: <RestrauntMenu />
+        },
+        {
+            path: "/grocery",
+            element: (
+                <Suspense fallback=<Shimmer />>
+                    <Grocery />
+                </Suspense >
+            ),
         }
 
 

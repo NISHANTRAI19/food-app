@@ -3,12 +3,14 @@ import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 
 import useResMenuAPI from "../utils/useResMenuAPI";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const RestrauntMenu = () => {
     const { resId } = useParams();
     const resInfo = useResMenuAPI(resId);
-    console.log("meni")
-    console.log(resInfo);
+    const status = useOnlineStatus();
+    if (status == false)
+        return (<h1>Looks like You are offline</h1>)
     if (resInfo === null)
         return <Shimmer />
 
