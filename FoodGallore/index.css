@@ -1,4 +1,8 @@
-.header {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -122,4 +126,4 @@
 .api-error {
   display: grid;
   place-items: center;
-}
+} */

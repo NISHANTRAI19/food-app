@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 //import resList from "../utils/mockData";
 import useOnlineStatus from "../utils/useOnlineStatus";
 //import useRestraunt from "../utils/useRestraunt";
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withPromotedLabel } from "./RestaurantCard";
 import Shimmer from "./Shimmer"
 import { Link } from "react-router-dom";
 
@@ -11,8 +11,9 @@ const Body = () => {
     const [filteredList, setfilteredList] = useState([]);
     const [search, setSearch] = useState("");
 
-
     const status = useOnlineStatus();
+
+    const RestaurantCardPromoted = withPromotedLabel(RestaurantCard)
 
 
     useEffect(() => { (swiggyApi()) }, [])
@@ -35,14 +36,14 @@ const Body = () => {
 
     return restaurantList.length === 0 ? (< Shimmer />) : (       //condition rendering shimmer or content using tertenary operator
         <div className="body">
-            <div className="Filter">
-                <input type="text" className="search-box" value={search} onChange={(e) => {
+            <div className="flex items-center">
+                <input type="text" className="border border-solid border-black rounded-md ml-4" value={search} onChange={(e) => {
 
                     setSearch(e.target.value)
 
                 }}></input>
 
-                <div className="search-btn" onClick={() => {
+                <div className="px-4 m-4 bg-amber-100 rounded-2xl h-8 hover:cursor-pointer" onClick={() => {
 
 
 
@@ -54,7 +55,7 @@ const Body = () => {
                 </div>
 
 
-                <div className="Filter-btn" onClick={() => {
+                <div className="px-4 bg-amber-100 rounded-2xl h-8 hover:cursor-pointer" onClick={() => {
                     setfilteredList(
                         restaurantList.filter((restraunt) => {
                             return restraunt.data.avgRating > 4
@@ -66,12 +67,18 @@ const Body = () => {
 
 
 
-            <div className="restaurant-container">
+            <div className="flex flex-wrap">
 
 
 
                 {
-                    filteredList.map(restaurant => (<Link className="res-link" key={restaurant.data.id} to={"restraunts/" + restaurant.data.id} ><RestaurantCard Data={restaurant} /></Link>))
+                    filteredList.map(restaurant => (
+                        <Link className="res-link" key={restaurant.data.id} to={"restraunts/" + restaurant.data.id} >
+
+                            {restaurant.data.promoted ? <RestaurantCardPromoted Data={restaurant} /> : <RestaurantCard Data={restaurant} />}
+
+
+                        </Link>))
                 }
             </div>
         </div >

@@ -16,7 +16,7 @@ import Shimmer from "./components/Shimmer";
 const Grocery = lazy(() => import("./components/Grocery"))
 const AppLayout = () => {
     return (
-        <div className="app">
+        <div className="bg-[#FFE5AD]">
             <Header />
             <Outlet />
 

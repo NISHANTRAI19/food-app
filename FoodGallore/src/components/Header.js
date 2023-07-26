@@ -5,19 +5,19 @@ import { useState } from "react";
 const Header = () => {
     const [Login, setLogin] = useState("Login")
     return (
-        <div className="header">
+        <div className="flex justify-between items-center bg-amber-100 h-28 shadow-lg">
 
-            <div className="logo-container">
-                <Link to="/"> <img className="logo" src={LOGO_URL}></img></Link>
+            <div className="">
+                <Link to="/"> <img className=" h-28 mix-blend-color-burn" src={LOGO_URL}></img></Link>
             </div>
-            <div className="nav-items">
-                <ul>
-                    <li><Link to="/grocery">Grocery</Link></li>
-                    <li><Link to="/about">About</Link></li>
-                    <li>
+            <div >
+                <ul className="flex ">
+                    <li className="m-4 p-4 text-lg"><Link to="/grocery">Grocery</Link></li>
+                    <li className="m-4 p-4"><Link to="/about">About</Link></li>
+                    <li className="m-4 p-4">
                         <Link to="/contact">Contact Us</Link></li>
-                    <li>Cart</li>
-                    <li div className="login-btn" onClick={() => {
+                    <li className="m-4 p-4">Cart</li>
+                    <li className="m-4 p-4" onClick={() => {
 
                         Login === "Login" ? setLogin("Logout") : setLogin("Login")
                     }}>
