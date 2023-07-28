@@ -5,9 +5,12 @@ import { useParams } from "react-router-dom";
 import useResMenuAPI from "../utils/useResMenuAPI";
 import useOnlineStatus from "../utils/useOnlineStatus";
 
+import MenuItems from "./MenuItems";
+
 const RestrauntMenu = () => {
     const { resId } = useParams();
     const resInfo = useResMenuAPI(resId);
+
     const status = useOnlineStatus();
     if (status == false)
         return (<h1>Looks like You are offline</h1>)
@@ -17,8 +20,15 @@ const RestrauntMenu = () => {
 
     const { name, cuisines, costForTwo } = resInfo?.cards[0]?.card?.card?.info;
 
-    const { itemCards } = resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
-    if (itemCards == null) {
+
+    const accordionCategory = resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((element) => {
+        return element?.card?.card?.["@type"] == 'type.googleapis.com/swiggy.presentation.food.v2.ItemCategory'
+    })
+
+    console.log(accordionCategory)
+
+
+    if (accordionCategory == null) {
 
         return (<div className="api-error">
             <div className="api-container">
@@ -30,25 +40,29 @@ const RestrauntMenu = () => {
     }
 
 
-    if (itemCards != null)
-        return (
-            <div className="menu">
 
-                <h1>{name}</h1>
-                <h2> {cuisines.join(", ")}</h2>
-                <h3>Cost for Two Rs.{costForTwo / 100}</h3>
+    return (<div className="flex justify-center  ">
+        <div className="">
 
-                <ul>    {
-                    itemCards.map((item, index) => {
+            <h1>{name}</h1>
+            <h2> {cuisines.join(", ")}</h2>
+            <h3>Cost for Two Rs.{costForTwo / 100}</h3>
 
-                        return (
-                            <li key={item.card.info.id}>{item.card.info.name} -Rs.{item.card.info.price / 100 || item.card.info.defaultPrice / 100}</li>)
-                    })}
-                </ul>
+            <br></br>
+            {
+                accordionCategory.map((e, index) => {
+                    //console.log(e?.card?.card.title)
+                    return (<MenuItems key={e?.card?.card?.title} data={e?.card?.card} />)
+                })
 
-            </div>
-        )
+            }
+        </div>
+
+
+    </div >
+    )
 }
+
 
 
 export default RestrauntMenu;
