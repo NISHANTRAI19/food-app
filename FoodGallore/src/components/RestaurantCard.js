@@ -3,7 +3,7 @@ import { CDN_URL } from "../utils/constants";
 
 const RestaurantCard = (resData) => {
     console.log(resData.Data?.info)
-    const { areaName, avgRating, cuisines, costForTwo, cloudinaryImageId, name, sla } = resData.Data?.info
+    const { areaName, avgRating, cuisines, costForTwo, cloudinaryImageId, name, sla } = resData?.Data?.info
     const cuisinesfixed = [cuisines[0], cuisines[1]]
 
     return (
@@ -28,9 +28,9 @@ export const withPromotedLabel = (RestaurantCard) => {
     return (props) => {
 
         return <div>
-            <label className="absolute mx-10 my-6 h-auto p-1 w-auto text-center bg-black bg-opacity-20 backdrop-blur-lg rounded drop-shadow-lg  text-white  text-xs hover:cursor-pointer">
+            <span className="absolute mx-10 my-6 h-auto p-1 w-auto text-center bg-black bg-opacity-20 backdrop-blur-lg rounded drop-shadow-lg  text-white  text-xs hover:cursor-pointer">
                 {props.Data.info.aggregatedDiscountInfoV3.header} {props.Data.info.aggregatedDiscountInfoV3.subHeader}
-            </label>
+            </span>
             <RestaurantCard {...props} />
         </div>
     }

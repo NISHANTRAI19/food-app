@@ -1,9 +1,10 @@
 import ItemCard from "./itemCard";
 import { useState } from "react";
 const MenuItems = ({ data }) => {
+
     const [showData, setShowData] = useState(false);
     const handleClick = () => {
-        setShowData(showData != true && true || showData && false)
+        setShowData(!showData)
     }
     return (<>
 
@@ -14,11 +15,11 @@ const MenuItems = ({ data }) => {
                 <span className="text-gray-200 pb-2" >
                     {data.title} ({data.itemCards.length})
                 </span>
-                <span className="pl-2"> ⌄</span>
+                <span className="pl-2"> ↓</span>
             </div>
             <div >
 
-                {showData && <ItemCard data={data.itemCards} />}
+                {showData && <ItemCard key={data?.title} prop={data?.itemCards} />}
 
 
 
