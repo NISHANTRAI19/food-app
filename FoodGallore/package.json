@@ -17,7 +17,7 @@
   "author": "NISHANTRAI19",
   "license": "ISC",
   "dependencies": {
-    "@types/react": "^18.2.17",
+    "@types/react": "^18.2.18",
     "@types/react-dom": "^18.2.7",
     "parcel": "^2.9.3",
     "react": "^18.2.0",

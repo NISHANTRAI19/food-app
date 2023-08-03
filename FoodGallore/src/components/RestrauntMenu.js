@@ -1,4 +1,3 @@
-
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 
@@ -6,14 +5,17 @@ import useResMenuAPI from "../utils/useResMenuAPI";
 import useOnlineStatus from "../utils/useOnlineStatus";
 
 import MenuItems from "./MenuItems";
+import { useState } from "react";
 
 const RestrauntMenu = () => {
     const { resId } = useParams();
     const resInfo = useResMenuAPI(resId);
+    const [openIndex, setOpenIndex] = useState(null);
 
     const status = useOnlineStatus();
     if (status == false)
         return (<h1>Looks like You are offline</h1>)
+
     if (resInfo === null)
         return <Shimmer />
 
@@ -37,7 +39,12 @@ const RestrauntMenu = () => {
 
             </div></div>)
     }
+    const handleClick = (index) => {
+        setOpenIndex((prevIndex) => (prevIndex === index ? null : index))
+        // we are using prevIndex because current state depends upon 
+        // previous index React batches multiple state updates together for performance optimization. The state updates might not happen as expected, and you may end up with unexpected results or race conditions.
 
+    }
 
 
     return (<div className="flex justify-center  ">
@@ -50,8 +57,12 @@ const RestrauntMenu = () => {
             <br></br>
             {
                 accordionCategory.map((e, index) => {
-                    //console.log(e?.card?.card.title)
-                    return (<MenuItems key={e?.card?.card?.title} data={e?.card?.card} />)
+
+                    return (<MenuItems key={e?.card?.card?.title}
+                        data={e?.card?.card}
+
+                        OpenAccordion={index === openIndex}
+                        clickHandler={() => { handleClick(index) }} />)
                 })
 
             }
