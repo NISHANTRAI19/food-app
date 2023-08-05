@@ -1,7 +1,7 @@
 
 import { CDN_URL } from "../utils/constants";
 const ItemCard = ({ prop }) => {
-    console.log(prop)
+
 
 
 

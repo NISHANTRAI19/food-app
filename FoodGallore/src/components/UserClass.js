@@ -1,4 +1,5 @@
 import React from "react";
+import UserContext from "../utils/UserContext";
 
 class UserClass extends React.Component {
 
@@ -40,6 +41,9 @@ class UserClass extends React.Component {
                         count: this.state.count + 1,
                     })
                 }}>{this.state.count}</h4>
+                <UserContext.Consumer>
+                    {({ loggedInUser }) => (<h1 className="text-lg font-bold" >Hi {loggedInUser}!</h1>)}
+                </UserContext.Consumer>
 
 
 

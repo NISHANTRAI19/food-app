@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
 import { LOGO_URL } from "../utils/constants";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import UserContext from "../utils/UserContext";
 
 const Header = () => {
     const [Login, setLogin] = useState("Login")
-    //img <img className=" h-28 mix-blend-color-burn" src={LOGO_URL}></img>
+    //const data = useContext(UserContext);
+    const { loggedInUser } = useContext(UserContext);
+    // console.log(data)
     return (
         <div className="flex justify-between items-center bg-gray-900 h-28 shadow-lg">
 
@@ -19,11 +22,13 @@ const Header = () => {
                         <Link to="/contact">Contact Us</Link></li>
                     <li className="m-4 p-4 text-gray-500  hover:text-white">Cart</li>
                     <li className="m-4 p-4 text-gray-500  hover:text-white" onClick={() => {
-
                         Login === "Login" ? setLogin("Logout") : setLogin("Login")
                     }}>
-
-                        {Login}</li>
+                        {Login}
+                    </li>
+                    <li className="m-4 p-4 text-gray-500  hover:text-white" >
+                        {loggedInUser}
+                    </li>
                 </ul>
             </div>
 

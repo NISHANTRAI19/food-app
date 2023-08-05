@@ -9,18 +9,21 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import ErrorHandler from "./components/Errorhandler";
 import RestrauntMenu from "./components/RestrauntMenu";
 
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useContext } from "react";
 import Shimmer from "./components/Shimmer";
+import UserContext from "./utils/UserContext";
 
 
 const Grocery = lazy(() => import("./components/Grocery"))
 const AppLayout = () => {
     return (
-        <div className="min-h-screen bg-gray-800">
-            <Header />
-            <Outlet />
+        <UserContext.Provider value={{ loggedInUser: "Cristiano" }} >
+            <div className="min-h-screen bg-gray-800">
+                <Header />
+                <Outlet />
 
-        </div>
+            </div>
+        </UserContext.Provider>
     )
 }
 const routeConfig = [{

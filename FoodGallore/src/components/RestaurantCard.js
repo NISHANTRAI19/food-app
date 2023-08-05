@@ -2,7 +2,7 @@ import { CDN_URL } from "../utils/constants";
 
 
 const RestaurantCard = (resData) => {
-    console.log(resData.Data?.info)
+
     const { areaName, avgRating, cuisines, costForTwo, cloudinaryImageId, name, sla } = resData?.Data?.info
     const cuisinesfixed = [cuisines[0], cuisines[1]]
 
