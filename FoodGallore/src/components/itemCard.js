@@ -1,9 +1,14 @@
 
+import { useDispatch } from "react-redux";
 import { CDN_URL } from "../utils/constants";
+import { addItem } from "../utils/cartSlice";
 const ItemCard = ({ prop }) => {
 
-
-
+    const dispatch = useDispatch();
+    const handleAddItem = (dishDetails) => {
+        dispatch(addItem(dishDetails));
+        //dispatching action
+    }
 
     return (<>
         {prop.map((e) => (<>
@@ -14,7 +19,9 @@ const ItemCard = ({ prop }) => {
                     <p className="text-gray-400 text-xs pb-2"> {e?.card?.info?.description} </p>
                 </div>
                 <div className="w-3/12">
-                    <div className="absolute text-white bg-opacity-20 bg-black backdrop-blur-lg rounded-lg p-1 my-1 mx-8 hover:cursor-pointer" >
+                    <div className="absolute text-white bg-opacity-20 bg-black backdrop-blur-lg rounded-lg p-1 my-1 mx-8 hover:cursor-pointer"
+                        onClick={() => handleAddItem(e)}
+                    >
                         Add+
 
                     </div>

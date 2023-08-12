@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom";
-import { LOGO_URL } from "../utils/constants";
 import { useContext, useState } from "react";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 const Header = () => {
     const [Login, setLogin] = useState("Login")
     //const data = useContext(UserContext);
     const { loggedInUser } = useContext(UserContext);
     // console.log(data)
+    const cartItems = useSelector((store) => store.cartSlice.items);
+
     return (
         <div className="flex justify-between items-center bg-gray-900 h-28 shadow-lg">
 
@@ -20,11 +22,16 @@ const Header = () => {
                     <li className="m-4 p-4 text-gray-500 hover:text-white "><Link to="/about">About</Link></li>
                     <li className="m-4 p-4 text-gray-500  hover:text-white">
                         <Link to="/contact">Contact Us</Link></li>
-                    <li className="m-4 p-4 text-gray-500  hover:text-white">Cart</li>
-                    <li className="m-4 p-4 text-gray-500  hover:text-white" onClick={() => {
+                    <li className="m-4 p-4 text-gray-500  hover:text-white">
+
+                        <Link to="/cart">
+                            Cart({cartItems.length})</Link></li>
+                    <li className="m-4 pt-4 text-gray-500 w-10 hover:text-white" onClick={() => {
                         Login === "Login" ? setLogin("Logout") : setLogin("Login")
                     }}>
+
                         {Login}
+
                     </li>
                     <li className="m-4 p-4 text-gray-500  hover:text-white" >
                         {loggedInUser}

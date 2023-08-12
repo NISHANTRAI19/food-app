@@ -22,11 +22,11 @@ const Body = () => {
     const swiggyApi = async () => {
         const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=30.7333148&lng=76.7794179&page_type=DESKTOP_WEB_LISTING")
         const json = await data.json();//have to add rejection handle
-        console.log("data")
-        console.log(data)
 
-        setRestaurantList(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants) //optional chaining
-        setfilteredList(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        console.log("json");
+        console.log(json)
+        setRestaurantList(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants) //optional chaining
+        setfilteredList(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
 
 
     }
@@ -36,9 +36,9 @@ const Body = () => {
 
         return (<h1>Looks like You are offline</h1>)
 
-    console.log(restaurantList)
+
     return restaurantList.length === 0 ? (< Shimmer />) : (       //condition rendering shimmer or content using tertenary operator
-        <div className="body">
+        <div className="mx-auto px-4">
             <div className="flex items-center">
                 <input type="text" className="text-white p-2  bg-slate-600  hover:bg-gradient-to-tr from-slate-600 to-slate-200 border border-solid border-black rounded-md ml-4" value={search} onChange={(e) => {
 
@@ -46,7 +46,7 @@ const Body = () => {
 
                 }}></input>
 
-                <div className="px-4 m-4  bg-slate-600  hover:bg-gradient-to-tr from-slate-600 to-slate-200 rounded-2xl h-8 hover:cursor-pointer" onClick={() => {
+                <div className="px-4 pt-1  bg-slate-600 text-white text-sm  m-4 hover:bg-gradient-to-tr from-slate-600 to-slate-200 rounded-2xl h-8 hover:cursor-pointer" onClick={() => {
                     const filtered = restaurantList.filter((restraunt) => restraunt.info.name.toLowerCase().includes(search.toLowerCase()));
                     console.log(filtered.length);
                     return (
@@ -59,7 +59,7 @@ const Body = () => {
                 </div>
 
 
-                <div className="px-4  bg-slate-600  hover:bg-gradient-to-tr from-slate-600 to-slate-200 rounded-2xl h-8 hover:cursor-pointer" onClick={() => {
+                <div className="px-4 pt-1  bg-slate-600 text-white text-sm  hover:bg-gradient-to-tr from-slate-600 to-slate-200 rounded-2xl h-8 hover:cursor-pointer" onClick={() => {
                     setfilteredList(
                         restaurantList.filter((restraunt) => {
                             return restraunt.info.avgRating > 4
@@ -71,13 +71,13 @@ const Body = () => {
 
 
             {/* rendering the restaurants */}
-            <div className="flex flex-wrap">
+            <div className="flex flex-wrap ">
 
 
 
                 {
                     filteredList.map(restaurant => (
-                        <Link className="res-link" key={restaurant.info.id} to={"restraunts/" + restaurant.info.id} >
+                        <Link key={restaurant.info.id} to={"restraunts/" + restaurant.info.id} >
 
                             {restaurant.info.aggregatedDiscountInfoV3 ? <RestaurantCardPromoted Data={restaurant} /> : <RestaurantCard Data={restaurant} />}
 

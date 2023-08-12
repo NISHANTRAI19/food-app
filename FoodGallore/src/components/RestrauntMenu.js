@@ -13,7 +13,7 @@ const RestrauntMenu = () => {
     const [openIndex, setOpenIndex] = useState(null);
 
     const status = useOnlineStatus();
-    if (status == false)
+    if (status != true)
         return (<h1>Looks like You are offline</h1>)
 
     if (resInfo === null)

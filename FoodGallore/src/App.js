@@ -12,19 +12,25 @@ import RestrauntMenu from "./components/RestrauntMenu";
 import React, { Suspense, lazy, useContext } from "react";
 import Shimmer from "./components/Shimmer";
 import UserContext from "./utils/UserContext";
-
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
+import Cart from "./components/Cart";
 
 const Grocery = lazy(() => import("./components/Grocery"))
 const AppLayout = () => {
     return (
-        <UserContext.Provider value={{ loggedInUser: "Cristiano" }} >
-            <div className="min-h-screen bg-gray-800">
-                <Header />
-                <Outlet />
+        <Provider store={appStore} >
+            <UserContext.Provider value={{ loggedInUser: "Cristiano" }} >
+                <div className="min-h-screen bg-gray-800">
+                    <Header />
+                    <Outlet />
 
-            </div>
-        </UserContext.Provider>
+                </div>
+            </UserContext.Provider>
+        </Provider>
+
     )
+
 }
 const routeConfig = [{
     path: "/",
@@ -53,6 +59,10 @@ const routeConfig = [{
                     <Grocery />
                 </Suspense >
             ),
+        },
+        {
+            path: "/cart",
+            element: <Cart />
         }
 
 
