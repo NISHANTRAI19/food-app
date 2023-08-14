@@ -23,10 +23,15 @@ const Body = () => {
         const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=30.7333148&lng=76.7794179&page_type=DESKTOP_WEB_LISTING")
         const json = await data.json();//have to add rejection handle
 
-        console.log("json");
-        console.log(json)
-        setRestaurantList(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants) //optional chaining
-        setfilteredList(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+
+
+        const restraunts = json.data.cards.filter((e) => {
+            return e.card?.card?.id == "top_brands_for_you";
+
+        })
+
+        setRestaurantList(restraunts[0]?.card?.card?.gridElements?.infoWithStyle?.restaurants) //optional chaining
+        setfilteredList(restraunts[0]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
 
 
     }
@@ -38,40 +43,44 @@ const Body = () => {
 
 
     return restaurantList.length === 0 ? (< Shimmer />) : (       //condition rendering shimmer or content using tertenary operator
-        <div className="mx-auto px-4">
-            <div className="flex items-center">
-                <input type="text" className="text-white p-2  bg-slate-600  hover:bg-gradient-to-tr from-slate-600 to-slate-200 border border-solid border-black rounded-md ml-4" value={search} onChange={(e) => {
+        <div className="mx-auto ">
+            <div className="mx-auto flex items-center">
+                <input type="text" className="text-white p-2  bg-slate-600  hover:bg-gradient-to-tr from-slate-600 to-slate-200 border border-solid border-black rounded-md ml-4"
+                    value={search}
+                    onChange={(e) => {
 
-                    setSearch(e.target.value)
+                        setSearch(e.target.value)
 
-                }}></input>
+                    }}></input>
 
-                <div className="px-4 pt-1  bg-slate-600 text-white text-sm  m-4 hover:bg-gradient-to-tr from-slate-600 to-slate-200 rounded-2xl h-8 hover:cursor-pointer" onClick={() => {
-                    const filtered = restaurantList.filter((restraunt) => restraunt.info.name.toLowerCase().includes(search.toLowerCase()));
-                    console.log(filtered.length);
-                    return (
+                <div className="px-4 pt-1  bg-slate-600 text-white text-sm  m-4 hover:bg-gradient-to-tr from-slate-600 to-slate-200 rounded-2xl h-8 hover:cursor-pointer"
+                    onClick={() => {
+                        const filtered = restaurantList.filter((restraunt) => restraunt.info.name.toLowerCase().includes(search.toLowerCase()));
 
-                        setfilteredList(filtered));
+                        return (
+
+                            setfilteredList(filtered));
 
 
-                }}>
+                    }}>
                     Search
                 </div>
 
 
-                <div className="px-4 pt-1  bg-slate-600 text-white text-sm  hover:bg-gradient-to-tr from-slate-600 to-slate-200 rounded-2xl h-8 hover:cursor-pointer" onClick={() => {
-                    setfilteredList(
-                        restaurantList.filter((restraunt) => {
-                            return restraunt.info.avgRating > 4
-                        }))
-                }}>Top Rated Restaurants</div>
+                <div className="px-4 pt-1  bg-slate-600 text-white text-sm  hover:bg-gradient-to-tr from-slate-600 to-slate-200 rounded-2xl h-8 hover:cursor-pointer"
+                    onClick={() => {
+                        setfilteredList(
+                            restaurantList.filter((restraunt) => {
+                                return restraunt.info.avgRating > 4
+                            }))
+                    }}>Top Rated Restaurants</div>
 
 
             </div>
 
 
             {/* rendering the restaurants */}
-            <div className="flex flex-wrap ">
+            <div className="mx-auto flex flex-wrap ">
 
 
 
